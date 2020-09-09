@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+
+<body>
+    <div id="app">
+        <h1> animate.css</h1>
+        <!--自定义过渡类名一般结合css动画库使用
+             adimater bounceOutRight 就是自定义的过渡类名 -->
+        <input type="button" value="toggle" @click="flag=!flag">
+        <transition name="custom-classes-transition" enter-active-class="animated tada"
+            leave-active-class="animated bounceOutRight" :duration="300">
+            <h1 v-show="flag">{{msg}}</h1>
+        </transition>
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"过渡与动画",
+                flag:true
+            },methods: {
+                
+            },
+        })
+    </script>
+</body>
+</html>

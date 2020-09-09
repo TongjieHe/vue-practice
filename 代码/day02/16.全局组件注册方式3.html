@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="app">
+        <h1>全局组件的注册方式1</h1>
+        <my-comp1></my-comp1>
+        
+    </div>
+    <template id="template1">
+        <div>
+            <h1>使用vue.extend创建的组件----1</h1>
+        </div>
+    </template>
+    <script src="./script/vue.js"></script>
+    <script>
+        Vue.component("myComp1",{
+            "template":"#template1"
+        })
+        var vm = new Vue({
+            el:"#app",
+            data:{
+
+            },
+            method:{
+
+            }
+        })
+        
+        
+    </script>
+</body>
+
+</html>

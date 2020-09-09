@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./script/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="start" @click="onStartButton">
+        <input type="button" value="stop" @click="onStopButton">
+        <h3 v-text="msg"></h3>
+    </div>
+</body>
+
+<script>
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            msg:"文字跑马灯效果     ",
+            settintrval:null
+        },
+        methods: {
+            onStartButton(){
+                if(this.settintrval) return;
+                this.settintrval = setInterval(() => {
+                    var beforeStr = this.msg.substring(0,1);
+                    var afterStr  = this.msg.substring(1);
+                    this.msg = afterStr+beforeStr;
+                }, 1000);
+            },
+            onStopButton(){
+                if(this.settintrval){
+                    clearInterval(this.settintrval)
+                    this.settintrval= null;
+                }
+            }
+        },
+    })
+</script>
+</html>

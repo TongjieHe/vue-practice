@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 没有跨域问题，随便引用 -->
+    <script src="http://www.xxx.com/getxxx"></script>
+    <script>
+        function show(){
+            alert("ok")
+        }
+    </script>
+
+    <!-- 1.由于浏览器的安全性限制，不允许ajax访问协议不同、域名不同、端口号不同的数据借口，
+                浏览器认为这种访问不安全
+        2.可以通过动态创建script的形式，把script标签的src属性，指向数据接口的地址，以为
+            script标签不存在跨域限制，这种数据获取方式，称作jsonp（注意：根据jsonp的实现原理，知晓，jsonp只支持get请求）
+    V -->
+    <div id="app">
+        
+        
+    </div>
+    <script src="./script/vue.js"></script>
+    <script src="./script/vue-resource.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"jsonp的原理"
+            },methods: {
+               
+            }
+           
+        })
+    </script>
+</body>
+</html>

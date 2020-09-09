@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inner{
+            width: 100px;
+            height: 60px;
+            border:1px solid red;
+        }
+        .out{
+            width: 120px;
+            height: 60px;
+            border:1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- stop 阻止事件冒泡 (点击input不触发div点击事件)-->
+       <div class="inner" @click="onInnerClick">
+            <input type="button" :value="btnvalue" @click.stop="onBtnClick">
+       </div>
+       <br/>
+        <!-- prevent 阻止默认行为-->
+        <div class="inner" @click="onInnerClick">
+            <a href="www.baidu.com" :value="btnvalue" @click.prevent="onBtnClick">Link</a>
+        </div>
+        <br/>
+        <!-- capture 使用事件捕获机制 （点击input先触发div点击事件，再触发input点击事件）-->
+        <div class="inner" @click="onInnerClick">
+            <input type="button" :value="btnvalue" @click.stop="onBtnClick">
+        </div>
+        <br/>
+        <!-- self 类似于stop，当前元素自身的事件时触发处理函数（自己是数据源）-->
+        <div class="inner" @click="onInnerClick">
+            <input type="button" :value="btnvalue" @click.self="onBtnClick">
+        </div>
+        <br/>
+        <!-- stop与self的应用区别，self只会判断自己是不是数据源，不会阻止冒泡 -->
+        <div class="out" @click="onOutClick">
+            <div class="inner" @click.stop="onInnerClick">
+                <input type="button" :value="btnvalue" @click.self="onBtnClick">
+            </div>
+        </div>
+        <br/>
+        <!-- once  只执行一次，div可执行多次-->
+        <div class="inner" @click="onInnerClick">
+            <input type="button" :value="btnvalue" @click.once="onBtnClick">
+        </div>
+
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                btnvalue:"click"
+            },
+            methods: {
+                onInnerClick(){
+                    console.log("onInnerClick click!!!")
+                },onBtnClick(){
+                    console.log("onBtnClick click!!!")
+                },onOutClick(){
+                    console.log("onOutClick click!!!")
+                }
+            },
+        })
+    </script>
+</body>
+</html>

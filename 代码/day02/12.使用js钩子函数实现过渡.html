@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+<style>
+    .ball{
+        width: 15px;
+        height: 15px;
+        border: 1px solid red;;
+        border-radius: 50%;
+    }
+</style>
+<body>
+    <div id="app">
+        <h1>使用js钩子函数实现过渡</h1>
+        <input type="button" @click="flag=!flag" value="加入购物车">
+
+        <transition name="" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+            <div class="ball" v-show="flag"></div>
+        </transition>
+        
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"过渡与动画",
+                flag:false
+            },methods: {
+                beforeEnter(el){
+                    el.style.transform="translate(0,0)"
+                },enter(el, done){
+                    el.offsetWidth
+                    el.style.transform="translate(150px,450px)"
+                    el.style.transition="all 1s ease"
+                    //使用done才会触发afterEnter函数
+                    done()
+                    
+                },afterEnter(el){
+                    //第一次点击flag变为true，入场动画
+                    //第二次点击变为false,离场动画，取消离场动画
+                    this.flag=!this.flag
+                    console.log(this.flag)
+                },
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* .router-link-active{
+        color:red;
+    } */
+    .myactive{
+        color:red;
+    }
+    .v-enter,.v-leave-to{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    .v-enter-active,.v-leave-active{
+        transition: all 0.6s ease;
+    }  
+</style>
+<body>
+    <h1>嵌套路由的实例/h1>
+    <div id="app">
+        <router-link to="/user/Tom">主页</router-link>
+        <router-link to="/user/Tom/profile">个人简介</router-link>
+        <router-link to="/user/Tom/posts">任职经历</router-link>
+        <transition mode="out-in">
+            <router-view></router-view>
+        </transition>
+       
+    </div>
+    <script src="./script/vue.js"></script>
+    <script src="./script/vue-router.js"></script>
+    <script>
+        var user = {
+            template:"<div><h1>用户名：{{$route.params.id}}<transition mode='out-in'><router-view></router-view></transition></h1></div>"
+        }
+        var userHome={
+            template:" <div>主页</div>"
+        }
+        var userProfile={
+            template:" <div>个人简介</div>"
+        }
+        var userPost={
+            template:" <div>任职经历</div>"
+        }
+        //注意 routes
+        // {path:"/",redirect:"/login"},初始化页面为login
+        const router = new VueRouter({
+            routes:[
+                {path:"/",redirect:"/user/Tom"},
+                {
+                    path:"/user/:id",component:user,
+                    children:[
+                        {path:"",component:userHome},
+                        // /user/tom/profile
+                        {path:"profile",component:userProfile},
+                        {path:"posts",component:userPost}]
+            
+                },
+            ],
+            linkActiveClass:"myactive"
+        })
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                parentData:"100"
+            },
+            methods:{
+               
+            },components:{
+                
+            },
+            router
+        })
+        
+        
+    </script>
+</body>
+
+</html>

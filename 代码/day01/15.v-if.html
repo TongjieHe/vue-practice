@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak]{
+        display:none;
+    }
+</style>
+<body>
+    <!-- 
+      1.v-if是通过创建/删除元素 实现显示和隐藏 （一般删除时采用此组件）
+      2.v-show是通过控制display属性来控制显示和隐藏  
+    -->
+    
+    <!-- V -->
+    <div id="app">
+        <h1 v-if="isShow">v-if的使用</h1>
+        <h1 v-show="isShow">v-Show的使用</h1>
+        <input type="button" value="toggle" @click="toggle">
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                isShow:true
+            },methods: {
+                toggle(){
+                    this.isShow=!this.isShow
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .color{
+        color:red;
+    }
+    .size{
+        size:44
+    }
+    .Italic{
+        font-style: italic;
+    }
+</style>
+<body>
+    <div id="app">
+        <!-- 绑定类样式时用 ‘’单引号，否则会去data中寻找变量 -->
+        <h4 :class="'color'">类样式绑定</h4>
+        <h4 :class="['color','size','Italic']">类样式绑定</h4>
+        <h4 :class="['color','size',isItalic?'Italic':'']">类样式绑定</h4>
+        <h4 :class="classjob">类样式绑定</h4>
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                isItalic:false,
+                classjob:{color:true,size:true,Italic:true}
+            }
+        })
+    </script>
+</body>
+</html>

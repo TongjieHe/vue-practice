@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>根组件</h1>
+        <p>获取到子组件中的数据时</p>
+        <!-- 接收抛出的事件 -->
+        <my-comp1 @event-a="parentMethod"></my-comp1>
+        
+    </div>
+    <template id="template1">
+        <div>
+            <h1>子组件</h1>
+            <input type="button" value="click me "  @click="sonMethod">
+        </div>
+    </template>
+    <script src="./script/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                parentData:"100"
+            },
+            methods:{
+                //参数接收子组件中的数据
+                parentMethod(param){
+                        console.log("parentMethod is called")
+                        console.log(param)
+                        this.parentData=param;
+                    }
+            },components:{
+                "MyComp1":{
+                    data:function(){
+                        return {
+                            sonData:"1000"
+                        }
+                    },
+                    template:"#template1",
+                    methods:{
+                        sonMethod(){
+                            console.log("sonMethod is called")
+                            //将事件向上抛出,并携带参数
+                            this.$emit("event-a",this.sonData)
+                        }
+                    }
+                }
+            }
+        })
+        
+        
+    </script>
+</body>
+
+</html>

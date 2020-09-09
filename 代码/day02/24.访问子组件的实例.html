@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>refs</h1>
+    <div id="app">
+        <h1 id="myH1" ref="myh1">根组件</h1>
+        <input type="button" value="访问子组件对象实例" @click="getElement">
+        ---------------
+        <my-comp1 ref="mycomp1"></my-comp1>
+        
+    </div>
+    <template id="template1">
+        <div>
+            <h1>子组件</h1>
+            <input type="text" name="" id="" ref="sontext">
+        </div>
+    </template>
+    <script src="./script/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                parentData:"100"
+            },
+            methods:{
+                getElement(){
+                    // var h1 = document.getElementById("myH1").innerHTML
+                    var h1 = this.$refs.myh1.innerHTML
+                    var son = this.$refs.mycomp1
+                    console.log(this.$refs)
+                    this.$refs.mycomp1.sonMethod()
+                }
+            },components:{
+                "MyComp1":{
+                    data:function(){
+                        return {
+                            sonData:"1000"
+                        }
+                    },
+                    template:"#template1",
+                    methods:{
+                        sonMethod(){
+                            console.log("sonMethod is called")
+                            console.log(this.$refs)
+                        }
+                    }
+                }
+            }
+        })
+        
+        
+    </script>
+</body>
+
+</html>

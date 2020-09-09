@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- V -->
+    <div id="app">
+        <h1 id="h1">{{msg}}</h1>
+        <p>生命周期函数   三步    </br>
+            1.实例创建： beforeCreate，created，beforeMount，mounted  <br>
+            2.运行时：beforeUpdate，updated  <br>
+            3.销毁时：beforeDestroy,destroyed <br>
+        </p>
+        <input type="button" value="changeMsg" @click="changeMsg">
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"生命周期函数"
+            },methods: {
+                changeMsg(){
+                   this.msg="生命周期函数-----"
+               }
+            },
+            beforeCreate(){
+                //第一个触发的生命周期函数，空的vue对象，只对事件以及生命周期函数初始化后触发
+                //此时间点，data和method的数据还没有初始化呢
+                console.log("beforeCreate is called")
+            },created(){
+                //第二个触发的生命周期函数，vue实例对象已初始化完成
+                //data和method已初始化结束
+                console.log("created is called")
+                console.log(this.msg)
+            },beforeMount(){
+                //Mount挂载，是将在内存中编译好模板对应的DOM节点挂载到DOM树上
+                //第三个触发的生命周期函数，模板已经编译好了，在内存中，但尚未页面渲染
+                console.log("beforeMount is called")
+                console.log(document.getElementById("h1").innerHTML) // 结果------{{msg}}
+                //页面上的内容还未被替换
+            },mounted(){
+                //第四个触发的生命周期函数，将内存中的模板挂载到页面中，已经可以看到渲染后的数据
+                console.log("mounted is called")
+                console.log(document.getElementById("h1").innerHTML)
+                
+                //实例创建阶段结束，实例对象在内存中，等待后续的操作
+           
+            },beforeUpdate() {
+                console.log("beforeUpdate is called")
+                //date中的数据已被修改为最新的
+                console.log(this.msg)
+                //页面上的数据还未更新
+                console.log(document.getElementById("h1").innerHTML)
+            },updated() {
+                console.log("update is called")
+                //date中的数据已被修改为最新的
+                console.log(this.msg)
+                //页面上的数据也已更新，页面数据与data数据保持同步
+                console.log(document.getElementById("h1").innerHTML)
+            }
+            //销毁实例：垃圾回收机制自动调用destroyed方法释放实例占用的内存
+        })
+    </script>
+</body>
+</html>

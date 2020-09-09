@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="app">
+        <h1>组件中的数据</h1>
+        <my-comp1></my-comp1>
+        <my-comp1></my-comp1>
+        
+    </div>
+    <template id="template1">
+        <div>
+            <input type="button" :value="'已点击'+count+'次'" @click="count++">
+        </div>
+    </template>
+    <script src="./script/vue.js"></script>
+    <script>
+        //每个组件中的数据是独立的,有效范围在该组件对象内
+        //组件中的data必须是一个函数
+        Vue.component("myComp1",{
+            data:function(){
+                return {
+                    count:0
+                }
+            },
+            "template":"#template1"
+        })
+        var vm = new Vue({
+            el:"#app",
+            data:{
+
+            },
+            method:{
+
+            }
+        })
+        
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak]{
+        display:none;
+    }
+</style>
+<body>
+    <h1>列表渲染</h1>
+    <!-- V -->
+    <div id="app">
+        <label for="">id:<input type="text" name="" id="" v-model="id"></label>
+        <label for="">name:<input type="text" name="" id="" v-model="name"></label>
+        <label for=""><input type="button" value="add" @click="addclick"></label>
+        <!-- 设置key值之后，将选中的值与key值绑定，避免添加选项后 选中位置不变 导致出现问题 -->
+        <p v-for="(item, index) in list" :key="item.id">
+            <input type="checkbox" name="" id="">{{item.id}}:{{item.name}}
+        </p>
+    </div>
+   
+
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            //M
+            data:{
+                id:"",
+                name:"",
+                list:[{id:1,name:"张三"},{id:2,name:"李四"}]
+            },
+            methods: {
+                addclick(){
+                    this.list.unshift({id:this.id,name:this.name})
+                }
+            },
+        })
+    </script>
+</body>
+</html>

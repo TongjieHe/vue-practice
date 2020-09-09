@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .v-enter,.v-leave-to{
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .v-enter-active,.v-leave-active{
+            transition: all 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>多组件之间的过渡</h1>
+        <p>
+            <a href="" @click.prevent="componentId='comp-a'">组件A</a>
+            <a href="" @click.prevent="componentId='comp-b'">组件B</a>
+            <transition mode="out-in">
+                <component :is="componentId"></component>
+            </transition>
+          
+        </p>
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        Vue.component("comp-a",{
+             "template":"<h1>组件A</h1>"
+         })
+         Vue.component("comp-b",{
+             "template":"<h1>组件B</h1>"
+         })
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                componentId:"comp-a"
+            },
+            method:{
+
+            }
+        })
+        
+        
+    </script>
+</body>
+
+</html>

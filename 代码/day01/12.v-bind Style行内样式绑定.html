@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .color{
+        color:red;
+    }
+    .size{
+        size:44
+    }
+    .Italic{
+        font-style: italic;
+    }
+</style>
+<body>
+    <div id="app">
+        <!-- -->
+        <h4 style="color:red;font-style:italic">行内样式绑定</h4>
+        <h4 :style="{'color':'red','font-style':'italic'}">行内样式绑定</h4>
+        <h4 :style="style1">行内样式绑定</h4>
+        <h4 :style="[style1,style2]">行内样式绑定</h4>
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                style1:{'color':'red'},
+                style2:{'font-style':'italic'}
+            }
+        })
+    </script>
+</body>
+</html>

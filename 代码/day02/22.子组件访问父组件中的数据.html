@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>根组件</h1>
+        <my-comp1></my-comp1>
+        <!-- 访问父组件数据 -->
+        <my-comp1 :prop1="parentData"></my-comp1>
+        
+    </div>
+    <template id="template1">
+        <div>
+            <h1>子组件</h1>
+            <p>访问父组件中的数据 {{prop1}}</p>
+            <p>自己组件中的数据：{{sonData}}</p>
+            <input type="button" value="修改"  @click="change">
+        </div>
+    </template>
+    <script src="./script/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                parentData:"100"
+            },
+            method:{
+
+            },components:{
+                "MyComp1":{
+                    //组件维护自身的数据，每个子组件都有自己独立的data,data可读可写
+                    data:function(){
+                        return {
+                            sonData:"1000"
+                        }
+                    },
+                    //props中的数据都是从父组件传递给子组件的数据
+                   // props中的数据只读，不建议对其重新赋值
+                    template:"#template1",
+                    props:["prop1"],
+                    methods:{
+                        change(){
+                            this.prop1 = 200
+                        }
+                    }
+                }
+            }
+        })
+        
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak]{
+        display:none;
+    }
+</style>
+<body>
+    <h1>列表渲染</h1>
+    <!-- V -->
+    <div id="app">
+        <em v-for="(item, index) in list" :key="index">{{item}}    </em>
+        <p></p>
+        <em v-for="(item, index) in obj" :key="index">{{item.name}}    </em>
+        <p></p>
+        <em v-for="count in 10" :key="index">{{count}}    </em>
+    </div>
+    <h1>key属性实现状态维护</h1>
+
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            //M
+            data:{
+                list:[11,21,31],
+                obj:[{id:1,name:"张"},{id:2,name:"李"}]
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak]{
+        display:none;
+    }
+</style>
+<body>
+    <!-- V -->
+    <div id="app">
+        <h1>绑定元素属性 1.style 2.class</h1>
+        <input type="button" v-bind:value="btnvalue">
+        <input type="button" v-bind:value="btnvalue + 'me'">
+        <input type="button" :value="btnvalue + 'me'">
+    </div>
+
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            //M
+            data:{
+                msg:"Hello Vue!",
+                btnvalue:"click"
+            }
+        })
+    </script>
+</body>
+</html>

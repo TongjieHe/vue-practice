@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* 入场动画/离场动画
+        v-enter，v-leave-to:进入过渡的开始状态，时间点
+        v-enter-active：在整个进入过渡的阶段中应用，时间段
+     */
+   
+    .v-enter-active{
+        animation: myanimation 0.5s;
+    }
+    .v-leave-active{
+        animation: myanimation 0.5s reverse;
+    }
+    @keyframes myanimation {
+        0%{
+            transform: scale(0);
+        }
+        50%{
+            transform: scale(1.5);
+        }
+        100%{
+            transform: scale(1);
+        }
+    }
+</style>
+<body>
+    <div id="app">
+        <h1>使用css过渡</h1>
+        <input type="button" value="toggle" @click="flag=!flag">
+        <transition>
+            <h1 v-show="flag">{{msg}}</h1>
+        </transition>
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"过渡与动画",
+                flag:true
+            },methods: {
+                toggle(){
+                    this.isShow=!this.isShow
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- V -->
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <input type="button" value="发送get请求" @click="sendGet">
+        <input type="button" value="发送post请求" @click="sendPost">
+        <input type="button" value="发送jsonp请求" @click="sendJsonp">
+        
+    </div>
+    <script src="./script/vue.js"></script>
+    <script src="./script/vue-resource.js"></script>
+    <script>
+        // vue的全局设定
+        //统一设定，代码中不需要重复写
+        Vue.http.options.root="http://localhost:8080"
+        Vue.http.option.emulateJSON = true
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"vue-resource的使用"
+            },methods: {
+                sendGet(){
+                    //this.$http.get("/sendUrl",[config]).then(successCallBack,errorCallBack)
+                   this.$http.get("/someUrl").then(response=>{
+                       console.log(response.body)
+                   }) 
+                },sendPost(){
+                    //this.$http.post("/someUrl",[body],[config]).then(successCallBack,errorCallBack)
+                    this.$http.post("/someUrl",{id:"001",name:"张三"},{emulateJSON:true}).then(response=>{
+                       console.log(response.body)
+                   }) 
+                },sendJsonp(){ //1.只能发送get请求  2.可以跨域 
+                    this.$http.jsonp("/someUrl",{emulateJSON:true}).then(response=>{
+                       console.log(response.body)
+                    })
+                }
+            }
+           
+        })
+    </script>
+</body>
+</html>

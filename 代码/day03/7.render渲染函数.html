@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+    <div id="app">
+       
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+        var MyComp={
+            template:"<div>子组件</div>"
+        }
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                parentData:"100"
+            },
+            methods:{
+               
+            },render(createElements) {
+                //createElements是一个函数，调用它能把组件模板渲染为对应的html
+                //return结果，会替换页面中el指定的那个容器元素元素（原先的内容会被替换）
+                return createElements(MyComp)
+            },
+        })
+        
+        
+    </script>
+</body>
+
+</html>

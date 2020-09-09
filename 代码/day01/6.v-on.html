@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    [v-cloak]{
+        display:none;
+    }
+</style>
+<body>
+    <!-- V -->
+    <div id="app">
+        <h1>点击时间绑定</h1>
+        <input type="button" :value="btnvalue + 'me'" v-on:click="onBtnClick">
+        <input type="button" :value="btnvalue + 'me'" @click="onMsgClick">
+    </div>
+
+    <script src="./script/vue.js"></script>
+    <script>
+        //创建Vue实例
+        //VM
+        var vm = new Vue({
+            el:"#app",
+            //M
+            data:{
+                msg:"Hello msg",
+                btnvalue:"click"
+            },
+            methods: {
+                onBtnClick:function(){
+                    alert("Hello")
+                },
+                onMsgClick:function(){
+                    alert(this.msg)
+                }
+            },
+        })
+    </script>
+</body>
+</html>

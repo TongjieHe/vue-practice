@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>watch侦听器的使用</h1>
+    <!-- 以前的做法 -->
+    <div id="app">
+        <input type="text" name="" id="" v-model="firstname" @keyup="setResult">+
+        <input type="text" name="" id="" v-model="lastname" @keyup="setResult">=
+        <input type="text" name="" id="" v-model="resutname">
+       
+    </div>
+    <br>
+    <br>
+    <!-- watch的做法 -->
+    <div id="appWatch">
+        <input type="text" name="" id="" v-model="firstname" >+
+        <input type="text" name="" id="" v-model="lastname" >=
+        <input type="text" name="" id="" v-model="resutname">
+       
+    </div>
+    <script src="./script/vue.js"></script>
+    <script>
+var vm = new Vue({
+            el:"#appWatch",
+            data:{
+               firstname:"",
+               lastname:"",
+               resutname:""
+            },
+            methods:{
+                
+            },
+            watch: {
+                firstname:function(newVal,oldVal){
+                    //console.log(oldVal+"---"+newVal)
+                    this.resutname = this.firstname+this.lastname
+
+                },
+                lastname:function(newVal,oldVal){
+                    //console.log(oldVal+"---"+newVal)
+                    this.resutname = this.firstname+this.lastname
+
+                }
+            },
+        })
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+               firstname:"",
+               lastname:"",
+               resutname:""
+            },
+            methods:{
+                setResult(){
+                    this.resutname = this.firstname+this.lastname 
+                }
+            },components:{
+                
+            }
+        })
+        
+        
+    </script>
+</body>
+
+</html>
